@@ -22,7 +22,7 @@ export function Hero({ heroImageUrl, whatsappNumber = '919876543210' }: HeroProp
       />
 
       {/* HERO MAIN CONTAINER */}
-      <section className="relative z-10 max-w-xl mx-auto px-5 sm:px-6 -mt-20 sm:-mt-24 pt-[67px] pb-6 flex flex-col space-y-6">
+      <section className="relative z-10 max-w-xl mx-auto px-4 sm:px-6 pt-4 sm:pt-6 pb-4 flex flex-col space-y-6">
 
         {/* HERO IMAGE CONTAINER WITH ABSOLUTE FLOATING TRUST BADGE */}
         <div className="relative w-full">
