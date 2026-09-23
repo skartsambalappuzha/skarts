@@ -12,18 +12,7 @@ const nextConfig = {
       },
     ],
   },
-  async rewrites() {
-    return [
-      {
-        source: '/shop',
-        destination: '/mural-paintings',
-      },
-      {
-        source: '/shop/:path*',
-        destination: '/mural-paintings/:path*',
-      },
-    ]
-  },
 }
 
 module.exports = nextConfig
+

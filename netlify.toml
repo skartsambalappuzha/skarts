@@ -1,9 +1,1 @@
-[[redirects]]
-  from = "/shop"
-  to = "/mural-paintings"
-  status = 200
-
-[[redirects]]
-  from = "/shop/*"
-  to = "/mural-paintings/:splat"
-  status = 200
+# Netlify configuration
