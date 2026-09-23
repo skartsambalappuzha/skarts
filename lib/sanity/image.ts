@@ -2,7 +2,7 @@ import imageUrlBuilder from '@sanity/image-url'
 
 const DEFAULT_PROJECT_ID = '2dbutxu6'
 const DEFAULT_DATASET = 'production'
-const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=1200&q=80'
+const FALLBACK_IMAGE = ''
 
 export function urlFor(source: any): string {
   if (!source) return FALLBACK_IMAGE
