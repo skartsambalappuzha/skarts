@@ -135,15 +135,15 @@ export function ArtworkDetailClient({ painting, whatsappNumber }: ArtworkDetailC
                 <span className="text-xs font-bold text-stone-900">Select size</span>
               </div>
 
-              <div className="flex flex-wrap gap-2">
+              <div className="grid grid-cols-5 gap-1.5 sm:flex sm:flex-wrap">
                 {DEFAULT_SIZES.map((size) => (
                   <button
                     key={size}
                     type="button"
                     onClick={() => setSelectedSize(size)}
-                    className={`w-16 py-2 rounded-full text-xs font-bold transition-all border ${
+                    className={`w-full sm:w-16 py-2 rounded-full text-[11px] sm:text-xs font-bold transition-all border text-center ${
                       selectedSize === size
-                        ? 'bg-stone-900 text-white border-stone-900 shadow-sm scale-105'
+                        ? 'bg-stone-900 text-white border-stone-900 shadow-sm scale-102'
                         : 'bg-stone-100 text-stone-700 border-transparent hover:bg-stone-200'
                     }`}
                   >

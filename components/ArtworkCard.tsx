@@ -26,12 +26,12 @@ export function ArtworkCard({ painting, whatsappNumber }: ArtworkCardProps) {
   const whatsappUrl = buildWhatsAppUrl(whatsappNumber, whatsappMessage)
 
   return (
-    <div className="group bg-white border border-stone-200/80 rounded-3xl p-3 sm:p-4 flex flex-col justify-between shadow-xs hover:shadow-xl transition-all duration-300 hover:border-[#C85A32]/40 overflow-hidden">
+    <div className="group bg-white border border-stone-200/80 rounded-2xl sm:rounded-3xl p-2.5 sm:p-4 flex flex-col justify-between h-full shadow-xs hover:shadow-xl transition-all duration-300 hover:border-[#C85A32]/40 overflow-hidden">
       
       {/* MAIN CONTENT LINK (IMAGE, TITLE, SUBTITLE, DESCRIPTION) */}
-      <Link href={cardUrl} className="block space-y-3 cursor-pointer">
+      <Link href={cardUrl} className="block space-y-2 sm:space-y-3 cursor-pointer flex-1">
         {/* TOP IMAGE CONTAINER */}
-        <div className="relative aspect-[4/3] sm:aspect-square rounded-2xl overflow-hidden bg-stone-100">
+        <div className="relative aspect-square rounded-xl sm:rounded-2xl overflow-hidden bg-stone-100">
           <img
             src={imageUrl}
             alt={painting.paintingName}
@@ -40,37 +40,35 @@ export function ArtworkCard({ painting, whatsappNumber }: ArtworkCardProps) {
           />
 
           {/* TOP LEFT BADGE */}
-          <span className="absolute top-2.5 left-2.5 bg-white/90 backdrop-blur-md text-stone-900 text-[10px] sm:text-xs font-semibold px-2.5 py-1 rounded-full shadow-xs">
+          <span className="absolute top-2 left-2 sm:top-2.5 sm:left-2.5 bg-white/90 backdrop-blur-md text-stone-900 text-[9px] sm:text-xs font-semibold px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full shadow-xs">
             Best Seller
           </span>
         </div>
 
         {/* TITLE & DESCRIPTION */}
-        <div>
-          <h3 className="font-heading font-extrabold text-stone-900 text-sm sm:text-base leading-snug line-clamp-1 group-hover:text-[#C85A32] transition-colors">
+        <div className="min-h-[60px] sm:min-h-[72px] flex flex-col justify-start">
+          <h3 className="font-heading font-extrabold text-stone-900 text-xs sm:text-base leading-snug line-clamp-1 group-hover:text-[#C85A32] transition-colors">
             {painting.paintingName}
           </h3>
 
-          <p className="text-[11px] sm:text-xs text-stone-400 font-medium mt-0.5">
+          <p className="text-[10px] sm:text-xs text-stone-400 font-medium mt-0.5">
             SKARTS Premium Canvas
           </p>
 
-          {painting.description && (
-            <p className="text-[11px] text-stone-500 line-clamp-2 leading-relaxed mt-1.5 font-normal">
-              {painting.description}
-            </p>
-          )}
+          <p className="text-[10px] sm:text-xs text-stone-500 line-clamp-2 leading-relaxed mt-1 font-normal">
+            {painting.description || 'Intricate traditional mural artwork with fine detailing.'}
+          </p>
         </div>
       </Link>
 
       {/* SIZE BUTTONS (INTERACTIVE) */}
-      <div className="mt-3 pt-1 border-t border-stone-100">
-        <div className="flex items-center justify-between mb-1.5">
-          <span className="text-[10px] uppercase tracking-wider text-stone-400 font-semibold">
+      <div className="mt-2 pt-2 border-t border-stone-100">
+        <div className="flex items-center justify-between mb-1">
+          <span className="text-[9px] sm:text-[10px] uppercase tracking-wider text-stone-400 font-semibold">
             Select Size
           </span>
         </div>
-        <div className="flex flex-wrap gap-1">
+        <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-1">
           {DEFAULT_SIZES.map((size) => (
             <button
               key={size}
@@ -79,9 +77,9 @@ export function ArtworkCard({ painting, whatsappNumber }: ArtworkCardProps) {
                 e.stopPropagation()
                 setSelectedSize(size)
               }}
-              className={`px-2 py-0.5 rounded-md text-[10px] font-semibold transition-all cursor-pointer ${
+              className={`px-1.5 sm:px-2 py-0.5 rounded-md text-[9px] sm:text-[10px] font-semibold transition-all cursor-pointer text-center ${
                 selectedSize === size
-                  ? 'bg-stone-900 text-white shadow-xs scale-105'
+                  ? 'bg-stone-900 text-white shadow-xs scale-102'
                   : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
               }`}
             >
@@ -92,14 +90,14 @@ export function ArtworkCard({ painting, whatsappNumber }: ArtworkCardProps) {
       </div>
 
       {/* BOTTOM ROW: PRICE PILL + BUY NOW BUTTON */}
-      <div className="mt-4 pt-2 flex items-center justify-between gap-2 border-t border-stone-100">
+      <div className="mt-3 pt-2 flex items-center justify-between gap-1 border-t border-stone-100">
         {/* PRICE PILL LINK */}
         <Link
           href={cardUrl}
-          className="bg-stone-100 text-stone-900 font-heading font-extrabold text-xs sm:text-sm px-3 py-1.5 rounded-full border border-stone-200/60 block hover:bg-stone-200 transition-colors cursor-pointer"
+          className="bg-stone-100 text-stone-900 font-heading font-extrabold text-[11px] sm:text-xs px-2.5 sm:px-3 py-1.5 rounded-full border border-stone-200/60 block hover:bg-stone-200 transition-colors cursor-pointer shrink-0"
         >
           {isPriceOnRequest ? (
-            <span className="text-[10px] uppercase font-bold text-[#C85A32]">
+            <span className="text-[9px] sm:text-[10px] uppercase font-bold text-[#C85A32]">
               Request
             </span>
           ) : (
@@ -114,11 +112,11 @@ export function ArtworkCard({ painting, whatsappNumber }: ArtworkCardProps) {
             e.stopPropagation()
             window.open(whatsappUrl, '_blank')
           }}
-          className="bg-stone-900 hover:bg-[#C85A32] text-white text-xs font-semibold px-3.5 py-1.5 rounded-full flex items-center gap-1 transition-all duration-300 shadow-sm active:scale-95 cursor-pointer"
+          className="bg-stone-900 hover:bg-[#C85A32] text-white text-[11px] sm:text-xs font-semibold px-2.5 sm:px-3.5 py-1.5 rounded-full flex items-center gap-0.5 sm:gap-1 transition-all duration-300 shadow-sm active:scale-95 cursor-pointer shrink-0"
         >
           <span>Buy Now</span>
           <svg
-            className="w-3.5 h-3.5"
+            className="w-3 h-3 sm:w-3.5 sm:h-3.5"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
