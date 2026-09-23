@@ -49,16 +49,6 @@ export function GalleryGridClient({ items }: GalleryGridClientProps) {
                 className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 loading="lazy"
               />
-              
-              {/* Subtle top dark vignette overlay */}
-              <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/20 pointer-events-none transition-opacity duration-300 group-hover:opacity-75" />
-
-              {/* Top-Left Overlay Label (matching reference screenshot) */}
-              <div className="absolute top-3 left-3 z-10">
-                <span className="text-white/95 text-xs sm:text-sm font-sans font-medium drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
-                  {item.title || `Artwork ${idx + 1}`}
-                </span>
-              </div>
             </div>
           )
         })}
