@@ -9,7 +9,7 @@ export function MobilePillNavbar() {
 
   const navItems = [
     { name: 'Home', href: '/' },
-    { name: 'Shop', href: '/mural-paintings' },
+    { name: 'Shop', href: '/shop' },
     { name: 'Gallery', href: '/gallery' },
     { name: 'Custom Art', href: '/custom-art' },
     { name: 'Contact', href: '/contact' },
@@ -24,8 +24,7 @@ export function MobilePillNavbar() {
         {navItems.map((item) => {
           const isActive =
             pathname === item.href ||
-            (item.href === '/mural-paintings' && pathname.startsWith('/mural-paintings')) ||
-            (item.href === '/shop' && pathname === '/shop')
+            (item.name === 'Shop' && (pathname.startsWith('/shop') || pathname.startsWith('/mural-paintings')))
 
           return (
             <Link
