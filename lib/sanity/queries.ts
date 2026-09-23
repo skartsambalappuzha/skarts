@@ -7,8 +7,14 @@ export const muralPaintingsQuery = `
     size,
     price,
     priceOnRequest,
-    mainArtworkImage,
-    moreImages,
+    mainArtworkImage {
+      ...,
+      "url": asset->url
+    },
+    moreImages[] {
+      ...,
+      "url": asset->url
+    },
     whatsappEnquiryMessage
   }
 `
@@ -22,8 +28,14 @@ export const featuredMuralPaintingsQuery = `
     size,
     price,
     priceOnRequest,
-    mainArtworkImage,
-    moreImages,
+    mainArtworkImage {
+      ...,
+      "url": asset->url
+    },
+    moreImages[] {
+      ...,
+      "url": asset->url
+    },
     whatsappEnquiryMessage
   }
 `
@@ -37,8 +49,14 @@ export const muralPaintingBySlugQuery = `
     size,
     price,
     priceOnRequest,
-    mainArtworkImage,
-    moreImages,
+    mainArtworkImage {
+      ...,
+      "url": asset->url
+    },
+    moreImages[] {
+      ...,
+      "url": asset->url
+    },
     whatsappEnquiryMessage
   }
 `
@@ -47,7 +65,10 @@ export const galleryQuery = `
   *[_type == "gallery"] | order(displayOrder asc, _createdAt desc) {
     _id,
     title,
-    image,
+    image {
+      ...,
+      "url": asset->url
+    },
     description,
     displayOrder
   }
@@ -60,7 +81,10 @@ export const customArtQuery = `
     description,
     processSteps,
     whatsappEnquiryText,
-    supportingImages
+    supportingImages[] {
+      ...,
+      "url": asset->url
+    }
   }
 `
 
@@ -79,7 +103,10 @@ export const heroQuery = `
     _id,
     title,
     subtitle,
-    heroImage,
+    heroImage {
+      ...,
+      "url": asset->url
+    },
     ctaText
   }
 `
@@ -91,8 +118,14 @@ export const reviewsQuery = `
     location,
     rating,
     reviewText,
-    reviewerImage,
-    artworkImage,
+    reviewerImage {
+      ...,
+      "url": asset->url
+    },
+    artworkImage {
+      ...,
+      "url": asset->url
+    },
     date,
     featured
   }
@@ -107,3 +140,4 @@ export const siteSettingsQuery = `
     studioAddress
   }
 `
+

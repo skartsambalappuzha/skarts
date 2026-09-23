@@ -14,12 +14,8 @@ interface ArtworkDetailClientProps {
   relatedPaintings?: MuralPainting[]
 }
 
-const DEFAULT_SIZES = ['12"x16"', '18"x24"', '24"x36"', '30"x40"', '36"x48"']
-
 export function ArtworkDetailClient({ painting, whatsappNumber, relatedPaintings = [] }: ArtworkDetailClientProps) {
-  const [selectedSize, setSelectedSize] = useState<string>(
-    painting.size || DEFAULT_SIZES[1]
-  )
+  const sizeText = painting.size || 'Standard Size'
   const [quantity, setQuantity] = useState<number>(1)
   const [isLiked, setIsLiked] = useState<boolean>(false)
 
@@ -42,7 +38,7 @@ export function ArtworkDetailClient({ painting, whatsappNumber, relatedPaintings
   const unitPrice = painting.price || 0
   const totalPrice = unitPrice * quantity
 
-  const whatsappMessage = `Hello SKARTS! I want to buy "${painting.paintingName}" (Qty: ${quantity}, Size: ${selectedSize}). Total Price: ${isPriceOnRequest ? 'Price on Request' : `₹${totalPrice.toLocaleString('en-IN')}`}. Please share order details & availability.`
+  const whatsappMessage = `Hello SKARTS! I want to buy "${painting.paintingName}" (Qty: ${quantity}, Size: ${sizeText}). Total Price: ${isPriceOnRequest ? 'Price on Request' : `₹${totalPrice.toLocaleString('en-IN')}`}. Please share order details & availability.`
   const whatsappUrl = buildWhatsAppUrl(whatsappNumber, whatsappMessage)
 
   // Filter out current item from related list
@@ -133,29 +129,15 @@ export function ArtworkDetailClient({ painting, whatsappNumber, relatedPaintings
               </p>
             )}
 
-            {/* SELECT SIZE ROW */}
-            <div className="space-y-2 pt-2 border-t border-stone-100">
-              <div>
-                <span className="text-xs font-bold text-stone-900">Select size</span>
+            {/* SINGLE SIZE DISPLAY */}
+            {sizeText && (
+              <div className="space-y-1.5 pt-2 border-t border-stone-100">
+                <span className="text-xs font-bold text-stone-900 block">Size</span>
+                <div className="inline-block bg-stone-100 border border-stone-200/80 px-3.5 py-1 rounded-full text-xs font-bold text-stone-800">
+                  {sizeText}
+                </div>
               </div>
-
-              <div className="flex flex-wrap gap-2">
-                {DEFAULT_SIZES.map((size) => (
-                  <button
-                    key={size}
-                    type="button"
-                    onClick={() => setSelectedSize(size)}
-                    className={`px-3.5 py-2 rounded-full text-xs font-bold transition-all border text-center ${
-                      selectedSize === size
-                        ? 'bg-stone-900 text-white border-stone-900 shadow-sm scale-102'
-                        : 'bg-stone-100 text-stone-700 border-transparent hover:bg-stone-200'
-                    }`}
-                  >
-                    {size}
-                  </button>
-                ))}
-              </div>
-            </div>
+            )}
 
             {/* QTY & TOTAL PRICE ROW */}
             <div className="flex items-center justify-between pt-3 border-t border-stone-100">

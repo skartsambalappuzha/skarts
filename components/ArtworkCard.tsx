@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React from 'react'
 import Link from 'next/link'
 import { MuralPainting } from '../lib/sanity/types'
 import { urlFor } from '../lib/sanity/image'
@@ -11,18 +11,13 @@ interface ArtworkCardProps {
   whatsappNumber: string
 }
 
-const DEFAULT_SIZES = ['12"x16"', '18"x24"', '24"x36"', '30"x40"', '36"x48"']
-
 export function ArtworkCard({ painting, whatsappNumber }: ArtworkCardProps) {
-  const [selectedSize, setSelectedSize] = useState<string>(
-    painting.size || DEFAULT_SIZES[1]
-  )
-
+  const sizeText = painting.size || 'Standard Size'
   const imageUrl = urlFor(painting.mainArtworkImage)
   const isPriceOnRequest = painting.priceOnRequest || !painting.price
   const cardUrl = `/mural-paintings/${painting.slug.current}`
 
-  const whatsappMessage = `Hello SKARTS! I want to buy "${painting.paintingName}" (Size: ${selectedSize}). Please share order details & availability.`
+  const whatsappMessage = `Hello SKARTS! I want to buy "${painting.paintingName}" (Size: ${sizeText}). Please share order details & availability.`
   const whatsappUrl = buildWhatsAppUrl(whatsappNumber, whatsappMessage)
 
   return (
@@ -61,33 +56,14 @@ export function ArtworkCard({ painting, whatsappNumber }: ArtworkCardProps) {
         </div>
       </Link>
 
-      {/* SIZE BUTTONS (INTERACTIVE) */}
-      <div className="mt-2 pt-2 border-t border-stone-100">
-        <div className="flex items-center justify-between mb-1">
-          <span className="text-[9px] sm:text-[10px] uppercase tracking-wider text-stone-400 font-semibold">
-            Select Size
+      {/* SINGLE SIZE DISPLAY */}
+      {sizeText && (
+        <div className="mt-2 pt-2 border-t border-stone-100 flex items-center justify-between">
+          <span className="text-[10px] sm:text-xs font-medium text-stone-500">
+            Size: <span className="font-semibold text-stone-800">{sizeText}</span>
           </span>
         </div>
-        <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-1">
-          {DEFAULT_SIZES.map((size) => (
-            <button
-              key={size}
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation()
-                setSelectedSize(size)
-              }}
-              className={`px-1.5 sm:px-2 py-0.5 rounded-md text-[9px] sm:text-[10px] font-semibold transition-all cursor-pointer text-center ${
-                selectedSize === size
-                  ? 'bg-stone-900 text-white shadow-xs scale-102'
-                  : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
-              }`}
-            >
-              {size}
-            </button>
-          ))}
-        </div>
-      </div>
+      )}
 
       {/* BOTTOM ROW: PRICE PILL + BUY NOW BUTTON */}
       <div className="mt-3 pt-2 flex items-center justify-between gap-1 border-t border-stone-100">
