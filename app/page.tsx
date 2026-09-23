@@ -40,7 +40,7 @@ export default async function HomePage() {
             href="/mural-paintings"
             className="inline-block px-8 py-3.5 border border-stone-300 bg-white text-[#1C1917] hover:border-[#C85A32] hover:text-[#C85A32] text-xs font-sans uppercase tracking-[0.2em] font-semibold transition-all rounded-full shadow-sm"
           >
-            Explore Complete Mural Catalogue
+            See More Shop All
           </Link>
         </div>
       </section>
