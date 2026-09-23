@@ -39,9 +39,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export const revalidate = 60
 
 export default async function ArtworkDetailPage({ params }: Props) {
-  const [painting, contact] = await Promise.all([
+  const [painting, contact, allPaintings] = await Promise.all([
     getMuralPaintingBySlug(params.slug),
     getContact(),
+    getMuralPaintings(),
   ])
 
   if (!painting) {
@@ -53,6 +54,7 @@ export default async function ArtworkDetailPage({ params }: Props) {
       <ArtworkDetailClient
         painting={painting}
         whatsappNumber={contact.whatsappNumber}
+        relatedPaintings={allPaintings}
       />
     </div>
   )

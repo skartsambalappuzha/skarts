@@ -11,11 +11,12 @@ import { buildWhatsAppUrl } from '../lib/whatsapp'
 interface ArtworkDetailClientProps {
   painting: MuralPainting
   whatsappNumber: string
+  relatedPaintings?: MuralPainting[]
 }
 
 const DEFAULT_SIZES = ['12"x16"', '18"x24"', '24"x36"', '30"x40"', '36"x48"']
 
-export function ArtworkDetailClient({ painting, whatsappNumber }: ArtworkDetailClientProps) {
+export function ArtworkDetailClient({ painting, whatsappNumber, relatedPaintings = [] }: ArtworkDetailClientProps) {
   const [selectedSize, setSelectedSize] = useState<string>(
     painting.size || DEFAULT_SIZES[1]
   )
@@ -44,9 +45,12 @@ export function ArtworkDetailClient({ painting, whatsappNumber }: ArtworkDetailC
   const whatsappMessage = `Hello SKARTS! I want to buy "${painting.paintingName}" (Qty: ${quantity}, Size: ${selectedSize}). Total Price: ${isPriceOnRequest ? 'Price on Request' : `₹${totalPrice.toLocaleString('en-IN')}`}. Please share order details & availability.`
   const whatsappUrl = buildWhatsAppUrl(whatsappNumber, whatsappMessage)
 
+  // Filter out current item from related list
+  const otherArtworks = relatedPaintings.filter((p) => p.slug?.current !== painting.slug?.current)
+
   return (
     <>
-      <div className="max-w-md sm:max-w-2xl lg:max-w-4xl mx-auto px-3 sm:px-4 pt-16 sm:pt-4 pb-24 sm:pb-12">
+      <div className="max-w-md sm:max-w-2xl lg:max-w-4xl mx-auto px-3 sm:px-4 pt-16 sm:pt-4 pb-16">
         
         {/* MOBILE CONTAINER FRAME */}
         <div className="bg-[#F8F8F8] border border-stone-200/80 rounded-3xl overflow-hidden shadow-xl relative">
@@ -213,6 +217,52 @@ export function ArtworkDetailClient({ painting, whatsappNumber }: ArtworkDetailC
 
           </div>
         </div>
+
+        {/* RELATED PRODUCTS SECTION */}
+        {otherArtworks.length > 0 && (
+          <div className="mt-12 space-y-5">
+            <div className="flex items-center justify-between border-b border-stone-200 pb-3">
+              <h2 className="font-heading font-extrabold text-lg text-stone-900">
+                Related Artworks
+              </h2>
+              <Link
+                href="/mural-paintings"
+                className="text-xs font-bold text-[#C85A32] hover:underline"
+              >
+                View Shop →
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3.5 sm:gap-5">
+              {otherArtworks.slice(0, 4).map((item) => (
+                <Link
+                  key={item._id || item.slug.current}
+                  href={`/mural-paintings/${item.slug.current}`}
+                  className="group bg-white rounded-2xl overflow-hidden border border-stone-200/80 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col"
+                >
+                  <div className="aspect-square relative bg-stone-100 overflow-hidden">
+                    <img
+                      src={urlFor(item.mainArtworkImage)}
+                      alt={item.paintingName}
+                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  <div className="p-3 flex-grow flex flex-col justify-between space-y-1">
+                    <h3 className="font-bold text-xs text-stone-900 line-clamp-1 group-hover:text-[#C85A32] transition-colors">
+                      {item.paintingName}
+                    </h3>
+                    <p className="text-[11px] font-semibold text-stone-700">
+                      {item.priceOnRequest || !item.price
+                        ? 'Price on Request'
+                        : `₹${item.price.toLocaleString('en-IN')}`}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
       </div>
 
       {/* LIGHTBOX */}
