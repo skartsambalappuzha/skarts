@@ -46,10 +46,10 @@ export function ArtworkDetailClient({ painting, whatsappNumber }: ArtworkDetailC
 
   return (
     <>
-      <div className="max-w-md sm:max-w-2xl lg:max-w-4xl mx-auto px-2 sm:px-4 pb-12">
+      <div className="max-w-md sm:max-w-2xl lg:max-w-4xl mx-auto px-3 sm:px-4 pt-16 sm:pt-4 pb-24 sm:pb-12">
         
         {/* MOBILE CONTAINER FRAME */}
-        <div className="bg-[#F8F8F8] border border-stone-200 rounded-3xl overflow-hidden shadow-lg relative">
+        <div className="bg-[#F8F8F8] border border-stone-200/80 rounded-3xl overflow-hidden shadow-xl relative">
           
           {/* TOP IMAGE SECTION */}
           <div className="relative aspect-4/5 sm:aspect-square bg-stone-100 overflow-hidden">
@@ -65,18 +65,18 @@ export function ArtworkDetailClient({ painting, whatsappNumber }: ArtworkDetailC
             {/* FLOATING TOP-LEFT BACK BUTTON */}
             <Link
               href="/mural-paintings"
-              className="absolute top-4 left-4 w-9 h-9 bg-black/80 hover:bg-black text-white rounded-full flex items-center justify-center backdrop-blur-md shadow-md transition-all active:scale-90 z-20"
+              className="absolute top-3 left-3 w-9 h-9 bg-black/75 hover:bg-black text-white rounded-full flex items-center justify-center backdrop-blur-md shadow-md transition-all active:scale-90 z-20"
               aria-label="Back"
             >
               <ArrowLeft className="w-5 h-5" />
             </Link>
 
             {/* FLOATING TOP-RIGHT SHARE & FULLSCREEN BUTTONS */}
-            <div className="absolute top-4 right-4 flex items-center space-x-2 z-20">
+            <div className="absolute top-3 right-3 flex items-center space-x-2 z-20">
               <button
                 type="button"
                 onClick={() => setLightboxOpen(true)}
-                className="w-9 h-9 bg-black/80 hover:bg-black text-white rounded-full flex items-center justify-center backdrop-blur-md shadow-md transition-all active:scale-90"
+                className="w-9 h-9 bg-black/75 hover:bg-black text-white rounded-full flex items-center justify-center backdrop-blur-md shadow-md transition-all active:scale-90"
                 aria-label="Fullscreen"
               >
                 <Maximize2 className="w-4 h-4" />
@@ -91,7 +91,7 @@ export function ArtworkDetailClient({ painting, whatsappNumber }: ArtworkDetailC
                     })
                   }
                 }}
-                className="w-9 h-9 bg-black/80 hover:bg-black text-white rounded-full flex items-center justify-center backdrop-blur-md shadow-md transition-all active:scale-90"
+                className="w-9 h-9 bg-black/75 hover:bg-black text-white rounded-full flex items-center justify-center backdrop-blur-md shadow-md transition-all active:scale-90"
                 aria-label="Share"
               >
                 <Share2 className="w-4 h-4" />
@@ -99,18 +99,18 @@ export function ArtworkDetailClient({ painting, whatsappNumber }: ArtworkDetailC
             </div>
 
             {/* BADGES AT BOTTOM LEFT OF IMAGE */}
-            <div className="absolute bottom-4 left-4 flex items-center space-x-2 z-20">
-              <span className="bg-[#E67E51] text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md shadow-xs">
+            <div className="absolute bottom-3 left-3 flex items-center space-x-2 z-20">
+              <span className="bg-[#C85A32] text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md shadow-xs">
                 New
               </span>
-              <span className="bg-[#99E2A0] text-stone-900 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md shadow-xs">
+              <span className="bg-[#25D366] text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md shadow-xs">
                 Handcrafted 100%
               </span>
             </div>
           </div>
 
           {/* BOTTOM SHEET / PRODUCT CARD CONTENT */}
-          <div className="bg-white rounded-t-3xl -mt-4 relative z-30 p-5 sm:p-7 space-y-5 shadow-2xl border-t border-stone-100">
+          <div className="bg-white rounded-t-3xl -mt-4 relative z-30 p-5 sm:p-7 space-y-4 shadow-2xl border-t border-stone-100">
             
             {/* TITLE */}
             <div>
@@ -124,24 +124,24 @@ export function ArtworkDetailClient({ painting, whatsappNumber }: ArtworkDetailC
 
             {/* DESCRIPTION */}
             {painting.description && (
-              <p className="text-xs text-stone-500 leading-relaxed font-normal">
+              <p className="text-xs text-stone-600 leading-relaxed font-normal">
                 {painting.description}
               </p>
             )}
 
             {/* SELECT SIZE ROW */}
-            <div className="space-y-2.5 pt-2 border-t border-stone-100">
+            <div className="space-y-2 pt-2 border-t border-stone-100">
               <div>
                 <span className="text-xs font-bold text-stone-900">Select size</span>
               </div>
 
-              <div className="grid grid-cols-5 gap-1.5 sm:flex sm:flex-wrap">
+              <div className="flex flex-wrap gap-2">
                 {DEFAULT_SIZES.map((size) => (
                   <button
                     key={size}
                     type="button"
                     onClick={() => setSelectedSize(size)}
-                    className={`w-full sm:w-16 py-2 rounded-full text-[11px] sm:text-xs font-bold transition-all border text-center ${
+                    className={`px-3.5 py-2 rounded-full text-xs font-bold transition-all border text-center ${
                       selectedSize === size
                         ? 'bg-stone-900 text-white border-stone-900 shadow-sm scale-102'
                         : 'bg-stone-100 text-stone-700 border-transparent hover:bg-stone-200'
@@ -186,7 +186,7 @@ export function ArtworkDetailClient({ painting, whatsappNumber }: ArtworkDetailC
                 <span className="text-[10px] font-semibold text-stone-400 uppercase tracking-wider block">
                   Total price
                 </span>
-                <span className="font-heading font-black text-xl text-stone-900">
+                <span className="font-heading font-black text-lg sm:text-xl text-stone-900">
                   {isPriceOnRequest ? (
                     <span className="text-xs uppercase font-bold text-[#C85A32]">
                       Price on Request
@@ -204,7 +204,7 @@ export function ArtworkDetailClient({ painting, whatsappNumber }: ArtworkDetailC
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full bg-stone-900 hover:bg-[#C85A32] text-white py-4 rounded-full flex items-center justify-center space-x-2.5 text-sm font-bold transition-all duration-300 shadow-md active:scale-98"
+                className="w-full bg-stone-900 hover:bg-[#C85A32] text-white py-3.5 rounded-full flex items-center justify-center space-x-2.5 text-sm font-bold transition-all duration-300 shadow-md active:scale-98"
               >
                 <ShoppingBag className="w-4 h-4" />
                 <span>Buy Now on WhatsApp</span>

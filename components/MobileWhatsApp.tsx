@@ -3,6 +3,7 @@
 import React from 'react'
 import { WhatsAppIcon } from './WhatsAppIcon'
 import { buildWhatsAppUrl } from '../lib/whatsapp'
+import { usePathname } from 'next/navigation'
 
 interface MobileWhatsAppProps {
   phone: string
@@ -10,7 +11,13 @@ interface MobileWhatsAppProps {
 }
 
 export function MobileWhatsApp({ phone, message }: MobileWhatsAppProps) {
+  const pathname = usePathname()
   const url = buildWhatsAppUrl(phone, message)
+
+  // Don't render floating icon on individual artwork detail page to prevent covering price & QTY
+  if (pathname.startsWith('/mural-paintings/') && pathname !== '/mural-paintings') {
+    return null
+  }
 
   return (
     <a
@@ -24,3 +31,4 @@ export function MobileWhatsApp({ phone, message }: MobileWhatsAppProps) {
     </a>
   )
 }
+
