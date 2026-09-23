@@ -100,6 +100,8 @@ export const contactQuery = `
     _id,
     whatsappNumber,
     phoneNumber,
+    address,
+    email,
     instagramUrl,
     contactInformation
   }

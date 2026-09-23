@@ -37,7 +37,7 @@ export function ContactSection({ contactData }: ContactSectionProps) {
           {/* Location */}
           <div className="flex items-center gap-3 text-stone-700 text-sm font-medium">
             <MapPin className="w-5 h-5 text-[#C85A32] shrink-0" />
-            <span>Mural Fine Art Studio, Ambalappuzha, Kerala, India</span>
+            <span>{contactData.address || 'Mural Fine Art Studio, Ambalappuzha, Kerala, India'}</span>
           </div>
 
           {/* Email */}

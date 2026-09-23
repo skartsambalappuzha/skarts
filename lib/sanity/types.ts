@@ -47,8 +47,9 @@ export interface ContactData {
   _id?: string
   whatsappNumber: string
   phoneNumber?: string
-  instagramUrl: string
+  address?: string
   email?: string
+  instagramUrl: string
   contactInformation?: string
 }
 
