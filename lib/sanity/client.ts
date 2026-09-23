@@ -6,6 +6,7 @@ import {
   galleryQuery,
   customArtQuery,
   contactQuery,
+  siteSettingsQuery,
 } from './queries'
 import {
   fallbackMuralPaintings,
@@ -13,9 +14,15 @@ import {
   fallbackCustomArt,
   fallbackContact,
 } from './fallbackData'
-import { MuralPainting, GalleryItem, CustomArtData, ContactData } from './types'
+import { MuralPainting, GalleryItem, CustomArtData, ContactData, SiteSettingsData } from './types'
 
-const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
+const fallbackSiteSettings: SiteSettingsData = {
+  orderWhatsappNumber: '919876543210',
+  defaultEnquiryText: 'Hello! I am interested in ordering custom artwork from Sathyanskarts.',
+}
+
+
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '2dbutxu6'
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
 const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2024-01-01'
 
@@ -86,12 +93,40 @@ export async function getCustomArt(): Promise<CustomArtData> {
 }
 
 export async function getContact(): Promise<ContactData> {
-  if (!sanityClient) return fallbackContact
-  try {
-    const data = await sanityClient.fetch(contactQuery)
-    return data || fallbackContact
-  } catch (error) {
-    console.warn('Sanity query error for getContact, using fallback:', error)
-    return fallbackContact
+  let contactData = fallbackContact
+  let settingsData = fallbackSiteSettings
+
+  if (sanityClient) {
+    try {
+      const [cRes, sRes] = await Promise.all([
+        sanityClient.fetch(contactQuery),
+        sanityClient.fetch(siteSettingsQuery),
+      ])
+      if (cRes) contactData = cRes
+      if (sRes) settingsData = sRes
+    } catch (error) {
+      console.warn('Sanity query error for getContact, using fallback:', error)
+    }
+  }
+
+  // If siteSettings orderWhatsappNumber is set, use it across all website components
+  const activeWhatsapp = settingsData?.orderWhatsappNumber || contactData.whatsappNumber
+
+  return {
+    ...contactData,
+    whatsappNumber: activeWhatsapp,
   }
 }
+
+
+export async function getSiteSettings(): Promise<SiteSettingsData> {
+  if (!sanityClient) return fallbackSiteSettings
+  try {
+    const data = await sanityClient.fetch(siteSettingsQuery)
+    return data || fallbackSiteSettings
+  } catch (error) {
+    console.warn('Sanity query error for getSiteSettings, using fallback:', error)
+    return fallbackSiteSettings
+  }
+}
+

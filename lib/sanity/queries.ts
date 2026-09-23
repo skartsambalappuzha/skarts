@@ -73,3 +73,37 @@ export const contactQuery = `
     contactInformation
   }
 `
+
+export const heroQuery = `
+  *[_type == "hero"][0] {
+    _id,
+    title,
+    subtitle,
+    heroImage,
+    ctaText
+  }
+`
+
+export const reviewsQuery = `
+  *[_type == "review"] | order(_createdAt desc) {
+    _id,
+    reviewerName,
+    location,
+    rating,
+    reviewText,
+    reviewerImage,
+    artworkImage,
+    date,
+    featured
+  }
+`
+export const siteSettingsQuery = `
+  *[_type == "siteSettings"][0] {
+    _id,
+    orderWhatsappNumber,
+    defaultEnquiryText,
+    contactPhoneNumber,
+    instagramUrl,
+    studioAddress
+  }
+`

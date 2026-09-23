@@ -43,3 +43,32 @@ export interface ContactData {
   email?: string
   contactInformation?: string
 }
+
+export interface HeroData {
+  _id?: string
+  title?: string
+  subtitle?: string
+  heroImage?: any
+  ctaText?: string
+}
+
+export interface ReviewData {
+  _id: string
+  reviewerName: string
+  location?: string
+  rating?: number
+  reviewText: string
+  reviewerImage?: any
+  artworkImage?: any
+  date?: string
+  featured?: boolean
+}
+
+export interface SiteSettingsData {
+  _id?: string
+  orderWhatsappNumber: string
+  defaultEnquiryText?: string
+  contactPhoneNumber?: string
+  instagramUrl?: string
+  studioAddress?: string
+}
