@@ -16,7 +16,7 @@ export function ArtworkCard({ painting, whatsappNumber }: ArtworkCardProps) {
   const imageUrl = urlFor(painting.mainArtworkImage)
   const isPriceOnRequest = painting.priceOnRequest || !painting.price
   const slugStr = getSlugString(painting.slug)
-  const cardUrl = `/mural-paintings/${slugStr}`
+  const cardUrl = `/shop/${slugStr}`
 
   const whatsappMessage = `Hello SKARTS! I want to buy "${painting.paintingName}" (Size: ${sizeText}). Please share order details & availability.`
   const whatsappUrl = buildWhatsAppUrl(whatsappNumber, whatsappMessage)

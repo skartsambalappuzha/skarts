@@ -41,7 +41,14 @@ export const featuredMuralPaintingsQuery = `
 `
 
 export const muralPaintingBySlugQuery = `
-  *[_type == "muralPainting" && (slug.current == $slug || slug == $slug)][0] {
+  *[_type == "muralPainting" && (
+    slug.current == $slug || 
+    slug == $slug || 
+    slug.current == $rawSlug || 
+    slug == $rawSlug || 
+    paintingName == $slug || 
+    paintingName == $rawSlug
+  )][0] {
     _id,
     paintingName,
     slug,
