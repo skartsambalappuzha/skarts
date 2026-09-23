@@ -2,7 +2,7 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { MuralPainting } from '../lib/sanity/types'
+import { MuralPainting, getSlugString } from '../lib/sanity/types'
 import { urlFor } from '../lib/sanity/image'
 import { buildWhatsAppUrl } from '../lib/whatsapp'
 
@@ -15,7 +15,8 @@ export function ArtworkCard({ painting, whatsappNumber }: ArtworkCardProps) {
   const sizeText = painting.size || 'Standard Size'
   const imageUrl = urlFor(painting.mainArtworkImage)
   const isPriceOnRequest = painting.priceOnRequest || !painting.price
-  const cardUrl = `/mural-paintings/${painting.slug.current}`
+  const slugStr = getSlugString(painting.slug)
+  const cardUrl = `/mural-paintings/${slugStr}`
 
   const whatsappMessage = `Hello SKARTS! I want to buy "${painting.paintingName}" (Size: ${sizeText}). Please share order details & availability.`
   const whatsappUrl = buildWhatsAppUrl(whatsappNumber, whatsappMessage)

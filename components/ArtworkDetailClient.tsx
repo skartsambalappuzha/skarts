@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { MuralPainting } from '../lib/sanity/types'
+import { MuralPainting, getSlugString } from '../lib/sanity/types'
 import { urlFor } from '../lib/sanity/image'
 import { Lightbox } from './Lightbox'
 import { ArrowLeft, Share2, Heart, Plus, Minus, ShoppingBag, Maximize2 } from 'lucide-react'
@@ -41,8 +41,9 @@ export function ArtworkDetailClient({ painting, whatsappNumber, relatedPaintings
   const whatsappMessage = `Hello SKARTS! I want to buy "${painting.paintingName}" (Qty: ${quantity}, Size: ${sizeText}). Total Price: ${isPriceOnRequest ? 'Price on Request' : `₹${totalPrice.toLocaleString('en-IN')}`}. Please share order details & availability.`
   const whatsappUrl = buildWhatsAppUrl(whatsappNumber, whatsappMessage)
 
+  const currentSlugStr = getSlugString(painting.slug)
   // Filter out current item from related list
-  const otherArtworks = relatedPaintings.filter((p) => p.slug?.current !== painting.slug?.current)
+  const otherArtworks = relatedPaintings.filter((p) => getSlugString(p.slug) !== currentSlugStr)
 
   return (
     <>
@@ -216,12 +217,14 @@ export function ArtworkDetailClient({ painting, whatsappNumber, relatedPaintings
             </div>
 
             <div className="grid grid-cols-2 gap-3.5 sm:gap-5">
-              {otherArtworks.slice(0, 4).map((item) => (
-                <Link
-                  key={item._id || item.slug.current}
-                  href={`/mural-paintings/${item.slug.current}`}
-                  className="group bg-white rounded-2xl overflow-hidden border border-stone-200/80 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col"
-                >
+              {otherArtworks.slice(0, 4).map((item) => {
+                const itemSlug = getSlugString(item.slug)
+                return (
+                  <Link
+                    key={item._id || itemSlug}
+                    href={`/mural-paintings/${itemSlug}`}
+                    className="group bg-white rounded-2xl overflow-hidden border border-stone-200/80 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col"
+                  >
                   <div className="aspect-square relative bg-stone-100 overflow-hidden">
                     <img
                       src={urlFor(item.mainArtworkImage)}
@@ -240,7 +243,8 @@ export function ArtworkDetailClient({ painting, whatsappNumber, relatedPaintings
                     </p>
                   </div>
                 </Link>
-              ))}
+              )
+            })}
             </div>
           </div>
         )}

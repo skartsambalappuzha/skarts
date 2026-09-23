@@ -14,13 +14,12 @@ import {
   fallbackCustomArt,
   fallbackContact,
 } from './fallbackData'
-import { MuralPainting, GalleryItem, CustomArtData, ContactData, SiteSettingsData } from './types'
+import { MuralPainting, GalleryItem, CustomArtData, ContactData, SiteSettingsData, getSlugString } from './types'
 
 const fallbackSiteSettings: SiteSettingsData = {
   orderWhatsappNumber: '919876543210',
   defaultEnquiryText: 'Hello! I am interested in ordering custom artwork from Sathyanskarts.',
 }
-
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '2dbutxu6'
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
@@ -59,14 +58,14 @@ export async function getFeaturedMuralPaintings(): Promise<MuralPainting[]> {
 
 export async function getMuralPaintingBySlug(slug: string): Promise<MuralPainting | null> {
   if (!sanityClient) {
-    return fallbackMuralPaintings.find((p) => p.slug.current === slug) || null
+    return fallbackMuralPaintings.find((p) => getSlugString(p.slug) === slug) || null
   }
   try {
     const data = await sanityClient.fetch(muralPaintingBySlugQuery, { slug })
-    return data || fallbackMuralPaintings.find((p) => p.slug.current === slug) || null
+    return data || fallbackMuralPaintings.find((p) => getSlugString(p.slug) === slug) || null
   } catch (error) {
     console.warn(`Sanity query error for slug ${slug}, using fallback:`, error)
-    return fallbackMuralPaintings.find((p) => p.slug.current === slug) || null
+    return fallbackMuralPaintings.find((p) => getSlugString(p.slug) === slug) || null
   }
 }
 

@@ -1,7 +1,7 @@
 export interface MuralPainting {
   _id: string
   paintingName: string
-  slug: { current: string }
+  slug: { current: string } | string
   description?: string
   size?: string
   price?: number
@@ -10,6 +10,14 @@ export interface MuralPainting {
   moreImages?: any[]
   whatsappEnquiryMessage?: string
 }
+
+export function getSlugString(slug: any): string {
+  if (!slug) return ''
+  if (typeof slug === 'string') return slug
+  if (typeof slug === 'object' && slug.current) return slug.current
+  return String(slug)
+}
+
 
 export interface GalleryItem {
   _id: string

@@ -2,7 +2,7 @@ export const muralPaintingsQuery = `
   *[_type == "muralPainting"] | order(_createdAt desc) {
     _id,
     paintingName,
-    "slug": slug.current,
+    slug,
     description,
     size,
     price,
@@ -23,7 +23,7 @@ export const featuredMuralPaintingsQuery = `
   *[_type == "muralPainting"][0...6] | order(_createdAt desc) {
     _id,
     paintingName,
-    "slug": slug.current,
+    slug,
     description,
     size,
     price,
@@ -41,10 +41,10 @@ export const featuredMuralPaintingsQuery = `
 `
 
 export const muralPaintingBySlugQuery = `
-  *[_type == "muralPainting" && slug.current == $slug][0] {
+  *[_type == "muralPainting" && (slug.current == $slug || slug == $slug)][0] {
     _id,
     paintingName,
-    "slug": slug.current,
+    slug,
     description,
     size,
     price,

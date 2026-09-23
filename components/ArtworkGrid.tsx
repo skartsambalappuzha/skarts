@@ -1,5 +1,5 @@
 import React from 'react'
-import { MuralPainting } from '../lib/sanity/types'
+import { MuralPainting, getSlugString } from '../lib/sanity/types'
 import { ArtworkCard } from './ArtworkCard'
 
 interface ArtworkGridProps {
@@ -21,7 +21,7 @@ export function ArtworkGrid({ paintings, whatsappNumber }: ArtworkGridProps) {
     <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 lg:gap-8">
       {paintings.map((painting) => (
         <ArtworkCard
-          key={painting._id || painting.slug.current}
+          key={painting._id || getSlugString(painting.slug)}
           painting={painting}
           whatsappNumber={whatsappNumber}
         />

@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import { getMuralPaintingBySlug, getContact, getMuralPaintings } from '../../../lib/sanity/client'
 import { ArtworkDetailClient } from '../../../components/ArtworkDetailClient'
 import { urlFor } from '../../../lib/sanity/image'
+import { getSlugString } from '../../../lib/sanity/types'
 
 interface Props {
   params: { slug: string }
@@ -11,7 +12,7 @@ interface Props {
 export async function generateStaticParams() {
   const paintings = await getMuralPaintings()
   return paintings.map((p) => ({
-    slug: p.slug.current,
+    slug: getSlugString(p.slug),
   }))
 }
 
