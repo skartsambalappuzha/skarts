@@ -118,9 +118,6 @@ export function ArtworkDetailClient({ painting, whatsappNumber, relatedPaintings
               <h1 className="font-bold text-xl sm:text-2xl text-black leading-tight">
                 {painting.paintingName}
               </h1>
-              <p className="text-xs text-stone-500 font-medium mt-1">
-                Hand-painted mural artwork inspired by traditional Kerala art.
-              </p>
             </div>
 
             {/* PRICE */}
@@ -136,7 +133,7 @@ export function ArtworkDetailClient({ painting, whatsappNumber, relatedPaintings
 
             {/* DESCRIPTION */}
             {painting.description && (
-              <p className="text-xs text-[#8A8A8A] leading-relaxed font-normal line-clamp-3">
+              <p className="text-xs sm:text-sm text-stone-600 leading-relaxed font-normal whitespace-pre-line">
                 {painting.description}
               </p>
             )}
