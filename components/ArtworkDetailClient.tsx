@@ -110,11 +110,8 @@ export function ArtworkDetailClient({ painting, whatsappNumber, relatedPaintings
           {/* PRODUCT CARD CONTENT */}
           <div className="bg-white p-5 sm:p-7 space-y-5 border-t border-[#E5E5E5]">
             
-            {/* CATEGORY & TITLE */}
+            {/* TITLE */}
             <div>
-              <span className="text-xs text-[#8A8A8A] font-medium block mb-1">
-                Traditional Kerala Mural
-              </span>
               <h1 className="font-bold text-xl sm:text-2xl text-black leading-tight">
                 {painting.paintingName}
               </h1>
@@ -148,7 +145,7 @@ export function ArtworkDetailClient({ painting, whatsappNumber, relatedPaintings
               </div>
             )}
 
-            {/* PRODUCT SPECIFICATIONS */}
+            {/* PRODUCT SPECIFICATIONS (DYNAMIC FROM CMS WITH DEFAULT FALLBACKS) */}
             <div className="pt-3 border-t border-[#E5E5E5] space-y-2.5">
               <h4 className="text-xs font-bold uppercase tracking-wider text-black mb-2">
                 Artwork & Delivery Details
@@ -158,7 +155,7 @@ export function ArtworkDetailClient({ painting, whatsappNumber, relatedPaintings
                   <Layers className="w-4 h-4 text-black shrink-0 mt-0.5" />
                   <div>
                     <span className="font-semibold text-black block">Material</span>
-                    <span className="text-stone-500">Premium Canvas & Acrylic Colors</span>
+                    <span className="text-stone-500">{painting.material || 'Premium Canvas & Acrylic Colors'}</span>
                   </div>
                 </div>
 
@@ -166,7 +163,7 @@ export function ArtworkDetailClient({ painting, whatsappNumber, relatedPaintings
                   <Palette className="w-4 h-4 text-black shrink-0 mt-0.5" />
                   <div>
                     <span className="font-semibold text-black block">Painting Technique</span>
-                    <span className="text-stone-500">100% Handpainted Traditional Kerala Mural</span>
+                    <span className="text-stone-500">{painting.technique || '100% Handpainted Traditional Kerala Mural'}</span>
                   </div>
                 </div>
 
@@ -174,7 +171,7 @@ export function ArtworkDetailClient({ painting, whatsappNumber, relatedPaintings
                   <Truck className="w-4 h-4 text-black shrink-0 mt-0.5" />
                   <div>
                     <span className="font-semibold text-black block">Delivery Areas</span>
-                    <span className="text-stone-500">All India & Worldwide Shipping</span>
+                    <span className="text-stone-500">{painting.deliveryAreas || 'All India & Worldwide Shipping'}</span>
                   </div>
                 </div>
 
@@ -182,7 +179,7 @@ export function ArtworkDetailClient({ painting, whatsappNumber, relatedPaintings
                   <Clock className="w-4 h-4 text-black shrink-0 mt-0.5" />
                   <div>
                     <span className="font-semibold text-black block">Estimated Delivery</span>
-                    <span className="text-stone-500">7 - 14 Business Days</span>
+                    <span className="text-stone-500">{painting.estimatedDeliveryTime || '7 - 14 Business Days'}</span>
                   </div>
                 </div>
               </div>
@@ -190,7 +187,7 @@ export function ArtworkDetailClient({ painting, whatsappNumber, relatedPaintings
               <div className="flex items-center gap-2 bg-stone-100/80 p-3 rounded-xl border border-stone-200/80 text-xs text-stone-800 mt-2">
                 <Sparkles className="w-4 h-4 text-black shrink-0" />
                 <span>
-                  <strong className="font-bold text-black">Customization Available:</strong> Custom dimensions, frames, & color schemes tailored on request.
+                  <strong className="font-bold text-black">Customization Available:</strong> {painting.customizationOptions || 'Custom dimensions, frames, & color schemes tailored on request.'}
                 </span>
               </div>
             </div>

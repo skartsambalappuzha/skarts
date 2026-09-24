@@ -15,7 +15,12 @@ export const muralPaintingsQuery = `
       ...,
       "url": asset->url
     },
-    whatsappEnquiryMessage
+    whatsappEnquiryMessage,
+    material,
+    technique,
+    deliveryAreas,
+    estimatedDeliveryTime,
+    customizationOptions
   }
 `
 
@@ -36,7 +41,12 @@ export const featuredMuralPaintingsQuery = `
       ...,
       "url": asset->url
     },
-    whatsappEnquiryMessage
+    whatsappEnquiryMessage,
+    material,
+    technique,
+    deliveryAreas,
+    estimatedDeliveryTime,
+    customizationOptions
   }
 `
 
@@ -64,7 +74,12 @@ export const muralPaintingBySlugQuery = `
       ...,
       "url": asset->url
     },
-    whatsappEnquiryMessage
+    whatsappEnquiryMessage,
+    material,
+    technique,
+    deliveryAreas,
+    estimatedDeliveryTime,
+    customizationOptions
   }
 `
 

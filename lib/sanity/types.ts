@@ -9,6 +9,11 @@ export interface MuralPainting {
   mainArtworkImage: any
   moreImages?: any[]
   whatsappEnquiryMessage?: string
+  material?: string
+  technique?: string
+  deliveryAreas?: string
+  estimatedDeliveryTime?: string
+  customizationOptions?: string
 }
 
 export function getSlugString(slug: any): string {
