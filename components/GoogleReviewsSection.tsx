@@ -151,7 +151,7 @@ export function GoogleReviewsSection() {
           <button
             type="button"
             onClick={handlePrev}
-            className="w-10 h-10 rounded-full bg-stone-900 hover:bg-[#C85A32] text-white flex items-center justify-center shadow-sm transition-all duration-300 active:scale-90 cursor-pointer"
+            className="w-10 h-10 rounded-full bg-stone-900 hover:bg-stone-800 text-white flex items-center justify-center shadow-sm transition-all duration-300 active:scale-90 cursor-pointer"
             aria-label="Previous Review"
           >
             <ChevronLeft className="w-5 h-5" />
@@ -160,7 +160,7 @@ export function GoogleReviewsSection() {
           <button
             type="button"
             onClick={handleNext}
-            className="w-10 h-10 rounded-full bg-stone-900 hover:bg-[#C85A32] text-white flex items-center justify-center shadow-sm transition-all duration-300 active:scale-90 cursor-pointer"
+            className="w-10 h-10 rounded-full bg-stone-900 hover:bg-stone-800 text-white flex items-center justify-center shadow-sm transition-all duration-300 active:scale-90 cursor-pointer"
             aria-label="Next Review"
           >
             <ChevronRight className="w-5 h-5" />

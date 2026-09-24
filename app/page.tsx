@@ -22,46 +22,40 @@ export default async function HomePage() {
       {/* HERO SECTION */}
       <Hero whatsappNumber={contact.whatsappNumber} />
 
-      {/* FEATURED MURAL PAINTINGS */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-        <div className="text-left border-b border-stone-200/60 pb-3">
-          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-[#1C1917] tracking-tight">
-            Explore Our Mural Art
+      {/* FEATURED MURAL PAINTINGS / PRODUCTS SECTION */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+        <div className="flex items-center justify-between border-b border-stone-200/80 pb-2">
+          <h2 className="font-heading font-extrabold text-lg sm:text-2xl text-stone-900 tracking-tight">
+            Products
           </h2>
+          <Link
+            href="/shop"
+            className="text-xs font-semibold text-stone-500 hover:text-[#10B981] transition-colors"
+          >
+            See all
+          </Link>
         </div>
 
         <ArtworkGrid
           paintings={featuredPaintings.slice(0, 4)}
           whatsappNumber={contact.whatsappNumber}
         />
-
-        <div className="text-center pt-6">
-          <Link
-            href="/shop"
-            className="inline-block px-8 py-3.5 border border-stone-300 bg-white text-[#1C1917] hover:border-[#C85A32] hover:text-[#C85A32] text-xs font-sans uppercase tracking-[0.2em] font-semibold transition-all rounded-full shadow-sm"
-          >
-            See More Shop All
-          </Link>
-        </div>
       </section>
 
-      {/* GALLERY SHOWCASE SECTION */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-        <div className="text-left border-b border-stone-200/60 pb-3">
-          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-[#1C1917] tracking-tight">
-            Visual Gallery
+      {/* GALLERY SHOWCASE SECTION / WHAT'S NEW SECTION */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 pt-4">
+        <div className="flex items-center justify-between border-b border-stone-200/80 pb-2">
+          <h2 className="font-heading font-extrabold text-lg sm:text-2xl text-stone-900 tracking-tight">
+            What&apos;s New
           </h2>
-        </div>
-        <GalleryGridClient items={galleryItems.slice(0, 6)} />
-
-        <div className="text-center pt-4">
           <Link
             href="/gallery"
-            className="inline-block px-8 py-3.5 border border-stone-300 bg-white text-[#1C1917] hover:border-[#C85A32] hover:text-[#C85A32] text-xs font-sans uppercase tracking-[0.2em] font-semibold transition-all rounded-full shadow-sm"
+            className="text-xs font-semibold text-stone-500 hover:text-[#10B981] transition-colors"
           >
-            Show More Images
+            See all
           </Link>
         </div>
+        <GalleryGridClient items={galleryItems.slice(0, 6)} />
       </section>
 
       {/* GOOGLE REVIEWS SECTION (BELOW GALLERY) */}

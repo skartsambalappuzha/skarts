@@ -98,71 +98,68 @@ export function ArtworkDetailClient({ painting, whatsappNumber, relatedPaintings
 
             {/* BADGES AT BOTTOM LEFT OF IMAGE */}
             <div className="absolute bottom-3 left-3 flex items-center space-x-2 z-20">
-              <span className="bg-[#C85A32] text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md shadow-xs">
+              <span className="bg-stone-900 text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-sm">
                 New
               </span>
-              <span className="bg-[#25D366] text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md shadow-xs">
+              <span className="bg-emerald-700 text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-sm">
                 Handcrafted 100%
               </span>
             </div>
           </div>
 
-          {/* BOTTOM SHEET / PRODUCT CARD CONTENT */}
-          <div className="bg-white rounded-t-3xl -mt-4 relative z-30 p-4 sm:p-7 space-y-4 shadow-2xl border-t border-stone-100">
+          {/* PRODUCT CARD CONTENT */}
+          <div className="bg-white p-5 sm:p-7 space-y-5 border-t border-[#E5E5E5]">
             
-            {/* TITLE */}
+            {/* CATEGORY & TITLE */}
             <div>
-              <h1 className="font-heading font-extrabold text-xl sm:text-2xl text-stone-900 leading-tight">
+              <span className="text-xs text-[#8A8A8A] font-medium block mb-1">
+                Traditional Kerala Mural
+              </span>
+              <h1 className="font-bold text-xl sm:text-2xl text-black leading-tight">
                 {painting.paintingName}
               </h1>
-              <p className="text-xs text-stone-400 font-medium mt-1">
-                SKARTS Premium Mural Art
+              <p className="text-xs text-stone-500 font-medium mt-1">
+                Hand-painted mural artwork inspired by traditional Kerala art.
               </p>
+            </div>
+
+            {/* PRICE */}
+            <div className="pt-2 border-t border-[#E5E5E5]">
+              <span className="font-extrabold text-2xl text-black">
+                {isPriceOnRequest ? (
+                  <span className="text-sm font-bold text-stone-800">Price on Request</span>
+                ) : (
+                  `₹${unitPrice.toLocaleString('en-IN')}`
+                )}
+              </span>
             </div>
 
             {/* DESCRIPTION */}
             {painting.description && (
-              <p className="text-xs sm:text-sm text-stone-600 leading-relaxed font-normal">
+              <p className="text-xs text-[#8A8A8A] leading-relaxed font-normal line-clamp-3">
                 {painting.description}
               </p>
             )}
 
-            {/* SIZE & PRICE ROW */}
-            <div className="flex items-center justify-between pt-3 border-t border-stone-100">
-              <div className="space-y-1">
-                <span className="text-[10px] font-semibold text-stone-400 uppercase tracking-wider block">
-                  Size
-                </span>
-                <span className="inline-block bg-stone-100 border border-stone-200/80 px-3 py-1 rounded-full text-xs font-bold text-stone-800">
+            {/* DYNAMIC ARTWORK SIZE FROM SANITY CMS */}
+            {sizeText && (
+              <div className="pt-2 border-t border-[#E5E5E5] flex items-center justify-between">
+                <span className="text-xs font-bold text-black">Artwork Size:</span>
+                <span className="px-3.5 py-1.5 rounded-full bg-stone-100 border border-[#E5E5E5] text-xs font-semibold text-black">
                   {sizeText}
                 </span>
               </div>
+            )}
 
-              <div className="text-right">
-                <span className="text-[10px] font-semibold text-stone-400 uppercase tracking-wider block">
-                  Price
-                </span>
-                <span className="font-heading font-black text-xl sm:text-2xl text-stone-900">
-                  {isPriceOnRequest ? (
-                    <span className="text-xs uppercase font-bold text-[#C85A32]">
-                      Price on Request
-                    </span>
-                  ) : (
-                    `₹${unitPrice.toLocaleString('en-IN')}`
-                  )}
-                </span>
-              </div>
-            </div>
-
-            {/* FULL-WIDTH BLACK PILL BUY NOW BUTTON */}
-            <div className="pt-2">
+            {/* BUY NOW (LARGE FULL-WIDTH BLACK PILL-SHAPED BUTTON) */}
+            <div className="pt-3">
               <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full bg-stone-900 hover:bg-[#C85A32] text-white py-3.5 rounded-full flex items-center justify-center space-x-2.5 text-sm font-bold transition-all duration-300 shadow-md active:scale-98"
+                className="w-full bg-black hover:bg-stone-900 text-white py-3.5 rounded-full flex items-center justify-center space-x-2.5 text-sm font-bold transition-all shadow-md active:scale-98"
               >
-                <ShoppingBag className="w-4 h-4" />
+                <ShoppingBag className="w-5 h-5" />
                 <span>Buy Now on WhatsApp</span>
               </a>
             </div>
@@ -179,7 +176,7 @@ export function ArtworkDetailClient({ painting, whatsappNumber, relatedPaintings
               </h2>
               <Link
                 href="/mural-paintings"
-                className="text-xs font-bold text-[#C85A32] hover:underline"
+                className="text-xs font-bold text-black hover:underline"
               >
                 View Shop →
               </Link>
@@ -202,7 +199,7 @@ export function ArtworkDetailClient({ painting, whatsappNumber, relatedPaintings
                     />
                   </div>
                   <div className="p-3 flex-grow flex flex-col justify-between space-y-1">
-                    <h3 className="font-bold text-xs text-stone-900 line-clamp-1 group-hover:text-[#C85A32] transition-colors">
+                    <h3 className="font-bold text-xs text-stone-900 line-clamp-1 group-hover:text-black transition-colors">
                       {item.paintingName}
                     </h3>
                     <p className="text-[11px] font-semibold text-stone-700">

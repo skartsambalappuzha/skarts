@@ -24,7 +24,7 @@ export function ContactSection({ contactData }: ContactSectionProps) {
       <div className="py-2 space-y-5 max-w-2xl">
         {/* Brand Title */}
         <h3 className="font-heading text-2xl sm:text-3xl font-black tracking-tight text-[#1C1917]">
-          SK<span className="text-[#C85A32]">ARTS</span>
+          SKARTS
         </h3>
 
         {/* Subtitle Description */}
@@ -32,29 +32,29 @@ export function ContactSection({ contactData }: ContactSectionProps) {
           Discover unique handcrafted mural paintings and bespoke architectural art. Quality craftsmanship meets traditional elegance.
         </p>
 
-        {/* Contact Information List with Terracotta Orange Icons */}
+        {/* Contact Information List with Black / Neutral Icons */}
         <div className="space-y-3 pt-1">
           {/* Location */}
           <div className="flex items-center gap-3 text-stone-700 text-sm font-medium">
-            <MapPin className="w-5 h-5 text-[#C85A32] shrink-0" />
+            <MapPin className="w-5 h-5 text-black shrink-0" />
             <span>{contactData.address || 'Mural Fine Art Studio, Ambalappuzha, Kerala, India'}</span>
           </div>
 
           {/* Email */}
           <a
             href={`mailto:${emailAddress}`}
-            className="flex items-center gap-3 text-stone-700 hover:text-[#C85A32] text-sm font-medium transition-colors"
+            className="flex items-center gap-3 text-stone-700 hover:text-black text-sm font-medium transition-colors"
           >
-            <Mail className="w-5 h-5 text-[#C85A32] shrink-0" />
+            <Mail className="w-5 h-5 text-black shrink-0" />
             <span>{emailAddress}</span>
           </a>
 
           {/* Phone */}
           <a
             href={`tel:${(contactData.phoneNumber || contactData.whatsappNumber).replace(/[^0-9+]/g, '')}`}
-            className="flex items-center gap-3 text-stone-700 hover:text-[#C85A32] text-sm font-medium transition-colors"
+            className="flex items-center gap-3 text-stone-700 hover:text-black text-sm font-medium transition-colors"
           >
-            <Phone className="w-5 h-5 text-[#C85A32] shrink-0" />
+            <Phone className="w-5 h-5 text-black shrink-0" />
             <span>{contactData.phoneNumber || contactData.whatsappNumber}</span>
           </a>
 
@@ -63,9 +63,9 @@ export function ContactSection({ contactData }: ContactSectionProps) {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 text-stone-700 hover:text-[#C85A32] text-sm font-medium transition-colors"
+            className="flex items-center gap-3 text-stone-700 hover:text-black text-sm font-medium transition-colors"
           >
-            <WhatsAppIcon className="w-5 h-5 text-[#C85A32] shrink-0" />
+            <WhatsAppIcon className="w-5 h-5 text-black shrink-0" />
             <span>WhatsApp Enquiry: {contactData.whatsappNumber}</span>
           </a>
         </div>
@@ -74,7 +74,7 @@ export function ContactSection({ contactData }: ContactSectionProps) {
         <div className="flex items-center gap-3 pt-3">
           <a
             href={`mailto:${emailAddress}`}
-            className="w-10 h-10 rounded-full bg-stone-100 hover:bg-[#C85A32] text-stone-800 hover:text-white flex items-center justify-center transition-colors shadow-xs"
+            className="w-10 h-10 rounded-full bg-stone-100 hover:bg-black text-stone-800 hover:text-white flex items-center justify-center transition-colors shadow-xs"
             aria-label="Send Email"
           >
             <Mail className="w-4 h-4 stroke-[1.75]" />
@@ -84,7 +84,7 @@ export function ContactSection({ contactData }: ContactSectionProps) {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-10 h-10 rounded-full bg-stone-100 hover:bg-[#C85A32] text-stone-800 hover:text-white flex items-center justify-center transition-colors shadow-xs"
+            className="w-10 h-10 rounded-full bg-stone-100 hover:bg-black text-stone-800 hover:text-white flex items-center justify-center transition-colors shadow-xs"
             aria-label="WhatsApp"
           >
             <WhatsAppIcon className="w-4 h-4" />
@@ -94,7 +94,7 @@ export function ContactSection({ contactData }: ContactSectionProps) {
             href={contactData.instagramUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-10 h-10 rounded-full bg-stone-100 hover:bg-[#C85A32] text-stone-800 hover:text-white flex items-center justify-center transition-colors shadow-xs"
+            className="w-10 h-10 rounded-full bg-stone-100 hover:bg-black text-stone-800 hover:text-white flex items-center justify-center transition-colors shadow-xs"
             aria-label="Instagram"
           >
             <Instagram className="w-4 h-4 stroke-[1.75]" />
@@ -102,7 +102,7 @@ export function ContactSection({ contactData }: ContactSectionProps) {
 
           <a
             href={`tel:${(contactData.phoneNumber || contactData.whatsappNumber).replace(/[^0-9+]/g, '')}`}
-            className="w-10 h-10 rounded-full bg-stone-100 hover:bg-[#C85A32] text-stone-800 hover:text-white flex items-center justify-center transition-colors shadow-xs"
+            className="w-10 h-10 rounded-full bg-stone-100 hover:bg-black text-stone-800 hover:text-white flex items-center justify-center transition-colors shadow-xs"
             aria-label="Direct Phone Call"
           >
             <Phone className="w-4 h-4 stroke-[1.75]" />

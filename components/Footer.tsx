@@ -18,7 +18,7 @@ export function Footer({ whatsappNumber, instagramUrl }: FooterProps) {
         {/* BRAND */}
         <Link href="/" className="inline-flex items-center space-x-2">
           <span className="font-heading text-xl tracking-widest uppercase text-[#1C1917] font-black">
-            SK<span className="text-[#C85A32]">ARTS</span>
+            SKARTS
           </span>
         </Link>
 
@@ -33,7 +33,7 @@ export function Footer({ whatsappNumber, instagramUrl }: FooterProps) {
             href={instagramUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2 border border-stone-200 bg-white hover:border-[#C85A32] text-[#1C1917] transition-colors rounded-full"
+            className="p-2 border border-stone-200 bg-white hover:border-black text-[#1C1917] transition-colors rounded-full"
             aria-label="Instagram"
           >
             <Instagram className="w-4 h-4" />
@@ -42,7 +42,7 @@ export function Footer({ whatsappNumber, instagramUrl }: FooterProps) {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2 border border-[#C85A32]/40 bg-[#C85A32] text-white hover:bg-[#B04B26] transition-colors rounded-full shadow-xs"
+            className="p-2 border border-stone-900 bg-black text-white hover:bg-stone-800 transition-colors rounded-full shadow-xs"
             aria-label="WhatsApp"
           >
             <WhatsAppIcon className="w-4 h-4" />
