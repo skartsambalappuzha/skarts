@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { MuralPainting, getSlugString } from '../lib/sanity/types'
 import { urlFor } from '../lib/sanity/image'
 import { Lightbox } from './Lightbox'
-import { ArrowLeft, Share2, ShoppingBag, Maximize2 } from 'lucide-react'
+import { ArrowLeft, Share2, ShoppingBag, Maximize2, Palette, Truck, Clock, Sparkles, Layers } from 'lucide-react'
 import Link from 'next/link'
 import { buildWhatsAppUrl } from '../lib/whatsapp'
 
@@ -147,6 +147,53 @@ export function ArtworkDetailClient({ painting, whatsappNumber, relatedPaintings
                 </span>
               </div>
             )}
+
+            {/* PRODUCT SPECIFICATIONS */}
+            <div className="pt-3 border-t border-[#E5E5E5] space-y-2.5">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-black mb-2">
+                Artwork & Delivery Details
+              </h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-stone-700">
+                <div className="flex items-start gap-2 bg-stone-50 p-2.5 rounded-xl border border-stone-100">
+                  <Layers className="w-4 h-4 text-black shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-semibold text-black block">Material</span>
+                    <span className="text-stone-500">Premium Canvas & Acrylic Colors</span>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-2 bg-stone-50 p-2.5 rounded-xl border border-stone-100">
+                  <Palette className="w-4 h-4 text-black shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-semibold text-black block">Painting Technique</span>
+                    <span className="text-stone-500">100% Handpainted Traditional Kerala Mural</span>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-2 bg-stone-50 p-2.5 rounded-xl border border-stone-100">
+                  <Truck className="w-4 h-4 text-black shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-semibold text-black block">Delivery Areas</span>
+                    <span className="text-stone-500">All India & Worldwide Shipping</span>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-2 bg-stone-50 p-2.5 rounded-xl border border-stone-100">
+                  <Clock className="w-4 h-4 text-black shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-semibold text-black block">Estimated Delivery</span>
+                    <span className="text-stone-500">7 - 14 Business Days</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2 bg-stone-100/80 p-3 rounded-xl border border-stone-200/80 text-xs text-stone-800 mt-2">
+                <Sparkles className="w-4 h-4 text-black shrink-0" />
+                <span>
+                  <strong className="font-bold text-black">Customization Available:</strong> Custom dimensions, frames, & color schemes tailored on request.
+                </span>
+              </div>
+            </div>
 
             {/* BUY NOW (LARGE FULL-WIDTH BLACK PILL-SHAPED BUTTON) */}
             <div className="pt-3">
