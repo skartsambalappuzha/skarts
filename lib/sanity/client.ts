@@ -59,23 +59,21 @@ export async function getFeaturedMuralPaintings(): Promise<MuralPainting[]> {
 export async function getMuralPaintingBySlug(slug: string): Promise<MuralPainting | null> {
   const decodedSlug = decodeURIComponent(slug)
   const isMatch = (p: MuralPainting) => {
-    const s = getSlugString(p.slug)
-    return s === slug || s === decodedSlug || p.paintingName === slug || p.paintingName === decodedSlug
+    const s = getSlugString(p.slug, p.paintingName) || p._id
+    const generatedSlug = p.paintingName ? p.paintingName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '') : ''
+    return (
+      s === slug ||
+      s === decodedSlug ||
+      generatedSlug === slug ||
+      generatedSlug === decodedSlug ||
+      p._id === slug ||
+      p.paintingName === slug ||
+      p.paintingName === decodedSlug
+    )
   }
 
-  if (!sanityClient) {
-    return fallbackMuralPaintings.find(isMatch) || null
-  }
-  try {
-    const data = await sanityClient.fetch(muralPaintingBySlugQuery, {
-      slug: decodedSlug,
-      rawSlug: slug,
-    })
-    return data || fallbackMuralPaintings.find(isMatch) || null
-  } catch (error) {
-    console.warn(`Sanity query error for slug ${slug}, using fallback:`, error)
-    return fallbackMuralPaintings.find(isMatch) || null
-  }
+  const paintings = await getMuralPaintings()
+  return paintings.find(isMatch) || null
 }
 
 export async function getGalleryItems(): Promise<GalleryItem[]> {
