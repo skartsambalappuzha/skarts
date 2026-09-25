@@ -15,7 +15,7 @@ interface HeroProps {
 export function Hero({ heroData, heroImageUrl, whatsappNumber = '919876543210' }: HeroProps) {
   const bgImage = (heroData?.heroImage ? urlFor(heroData.heroImage) : null) || heroImageUrl || '/hero-banner.jpg'
   const title = heroData?.title || 'Discover Beautiful Mural Art'
-  const subtitle = heroData?.subtitle || 'Hand-painted traditional & contemporary murals for modern spaces.'
+  const subtitle = heroData?.subtitle || ''
   const ctaText = heroData?.ctaText || 'Explore Art'
 
   return (
@@ -36,9 +36,11 @@ export function Hero({ heroData, heroImageUrl, whatsappNumber = '919876543210' }
             <h2 className="font-extrabold text-xl sm:text-3xl text-white leading-tight">
               {title}
             </h2>
-            <p className="text-white/80 text-xs sm:text-sm font-normal line-clamp-1">
-              {subtitle}
-            </p>
+            {subtitle ? (
+              <p className="text-white/80 text-xs sm:text-sm font-normal line-clamp-1">
+                {subtitle}
+              </p>
+            ) : null}
 
             <div className="pt-2">
               <Link
