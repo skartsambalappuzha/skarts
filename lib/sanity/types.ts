@@ -1,7 +1,7 @@
 export interface MuralPainting {
   _id: string
   paintingName: string
-  slug: { current: string } | string
+  slug?: { current: string } | string
   description?: string
   size?: string
   price?: number
@@ -16,11 +16,15 @@ export interface MuralPainting {
   customizationOptions?: string
 }
 
-export function getSlugString(slug: any): string {
-  if (!slug) return ''
-  if (typeof slug === 'string') return slug
-  if (typeof slug === 'object' && slug.current) return slug.current
-  return String(slug)
+export function getSlugString(slug: any, fallbackName?: string): string {
+  if (slug) {
+    if (typeof slug === 'string') return slug
+    if (typeof slug === 'object' && slug.current) return slug.current
+  }
+  if (fallbackName) {
+    return fallbackName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '')
+  }
+  return ''
 }
 
 
