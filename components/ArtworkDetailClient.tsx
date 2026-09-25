@@ -38,9 +38,9 @@ export function ArtworkDetailClient({ painting, whatsappNumber, relatedPaintings
   const whatsappMessage = `Hello SKARTS! I want to buy "${painting.paintingName}" (Size: ${sizeText}). Price: ${isPriceOnRequest ? 'Price on Request' : `₹${unitPrice.toLocaleString('en-IN')}`}. Please share order details & availability.`
   const whatsappUrl = buildWhatsAppUrl(whatsappNumber, whatsappMessage)
 
-  const currentSlugStr = getSlugString(painting.slug)
+  const currentSlugStr = getSlugString(painting.slug, painting.paintingName) || painting._id
   // Filter out current item from related list
-  const otherArtworks = relatedPaintings.filter((p) => getSlugString(p.slug) !== currentSlugStr)
+  const otherArtworks = relatedPaintings.filter((p) => (getSlugString(p.slug, p.paintingName) || p._id) !== currentSlugStr)
 
   return (
     <>
@@ -225,7 +225,7 @@ export function ArtworkDetailClient({ painting, whatsappNumber, relatedPaintings
 
             <div className="grid grid-cols-2 gap-3.5 sm:gap-5">
               {otherArtworks.slice(0, 4).map((item) => {
-                const itemSlug = getSlugString(item.slug)
+                const itemSlug = getSlugString(item.slug, item.paintingName) || item._id
                 return (
                   <Link
                     key={item._id || itemSlug}

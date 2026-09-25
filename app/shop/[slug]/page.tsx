@@ -11,9 +11,11 @@ interface Props {
 
 export async function generateStaticParams() {
   const paintings = await getMuralPaintings()
-  return paintings.map((p) => ({
-    slug: getSlugString(p.slug),
-  }))
+  return paintings
+    .map((p) => ({
+      slug: getSlugString(p.slug, p.paintingName) || p._id,
+    }))
+    .filter((item) => Boolean(item.slug && item.slug.trim() !== ''))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
