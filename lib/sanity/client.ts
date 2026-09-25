@@ -7,6 +7,7 @@ import {
   customArtQuery,
   contactQuery,
   siteSettingsQuery,
+  heroQuery,
 } from './queries'
 import {
   fallbackMuralPaintings,
@@ -14,7 +15,7 @@ import {
   fallbackCustomArt,
   fallbackContact,
 } from './fallbackData'
-import { MuralPainting, GalleryItem, CustomArtData, ContactData, SiteSettingsData, getSlugString } from './types'
+import { MuralPainting, GalleryItem, CustomArtData, ContactData, SiteSettingsData, HeroData, getSlugString } from './types'
 
 const fallbackSiteSettings: SiteSettingsData = {
   orderWhatsappNumber: '919876543210',
@@ -133,6 +134,17 @@ export async function getSiteSettings(): Promise<SiteSettingsData> {
   } catch (error) {
     console.warn('Sanity query error for getSiteSettings, using fallback:', error)
     return fallbackSiteSettings
+  }
+}
+
+export async function getHero(): Promise<HeroData | null> {
+  if (!sanityClient) return null
+  try {
+    const data = await sanityClient.fetch(heroQuery)
+    return data || null
+  } catch (error) {
+    console.warn('Sanity query error for getHero:', error)
+    return null
   }
 }
 

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
-import { getFeaturedMuralPaintings, getContact, getGalleryItems } from '../lib/sanity/client'
+import { getFeaturedMuralPaintings, getContact, getGalleryItems, getHero } from '../lib/sanity/client'
 import { Hero } from '../components/Hero'
 import { ArtworkGrid } from '../components/ArtworkGrid'
 import { GalleryGridClient } from '../components/GalleryGridClient'
@@ -10,17 +10,18 @@ import { ContactSection } from '../components/ContactSection'
 export const revalidate = 60 // Revalidate Sanity data every 60s
 
 export default async function HomePage() {
-  const [featuredPaintings, contact, galleryItems] = await Promise.all([
+  const [featuredPaintings, contact, galleryItems, heroData] = await Promise.all([
     getFeaturedMuralPaintings(),
     getContact(),
     getGalleryItems(),
+    getHero(),
   ])
 
   return (
     <div className="space-y-10 pb-12">
       
       {/* HERO SECTION */}
-      <Hero whatsappNumber={contact.whatsappNumber} />
+      <Hero heroData={heroData} whatsappNumber={contact.whatsappNumber} />
 
       {/* FEATURED MURAL PAINTINGS / PRODUCTS SECTION */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
