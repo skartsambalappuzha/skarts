@@ -8,6 +8,8 @@ import { ArrowLeft, Share2, ShoppingBag, Maximize2, Palette, Truck, Clock, Spark
 import Link from 'next/link'
 import { buildWhatsAppUrl } from '../lib/whatsapp'
 
+import { OrderAddressModal } from './OrderAddressModal'
+
 interface ArtworkDetailClientProps {
   painting: MuralPainting
   whatsappNumber: string
@@ -31,6 +33,7 @@ export function ArtworkDetailClient({ painting, whatsappNumber, relatedPaintings
 
   const [selectedImageIndex, setSelectedImageIndex] = useState(0)
   const [lightboxOpen, setLightboxOpen] = useState(false)
+  const [addressModalOpen, setAddressModalOpen] = useState(false)
 
   const isPriceOnRequest = painting.priceOnRequest || !painting.price
   const unitPrice = painting.price || 0
@@ -192,17 +195,16 @@ export function ArtworkDetailClient({ painting, whatsappNumber, relatedPaintings
               </div>
             </div>
 
-            {/* BUY NOW (LARGE FULL-WIDTH BLACK PILL-SHAPED BUTTON) */}
+            {/* BUY NOW (LARGE FULL-WIDTH BUTTON) */}
             <div className="pt-3">
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full bg-black hover:bg-stone-900 text-white py-3.5 rounded-full flex items-center justify-center space-x-2.5 text-sm font-bold transition-all shadow-md active:scale-98"
+              <button
+                type="button"
+                onClick={() => setAddressModalOpen(true)}
+                className="w-full bg-[#25D366] hover:bg-[#20bd5a] text-white py-3.5 rounded-full flex items-center justify-center space-x-2.5 text-sm font-bold transition-all shadow-md active:scale-98 cursor-pointer"
               >
                 <ShoppingBag className="w-5 h-5" />
                 <span>Buy Now on WhatsApp</span>
-              </a>
+              </button>
             </div>
 
           </div>
@@ -266,6 +268,14 @@ export function ArtworkDetailClient({ painting, whatsappNumber, relatedPaintings
         onClose={() => setLightboxOpen(false)}
         onPrev={() => setSelectedImageIndex((prev) => (prev > 0 ? prev - 1 : imageObjects.length - 1))}
         onNext={() => setSelectedImageIndex((prev) => (prev < imageObjects.length - 1 ? prev + 1 : 0))}
+      />
+
+      {/* SHIPPING ADDRESS MODAL */}
+      <OrderAddressModal
+        isOpen={addressModalOpen}
+        onClose={() => setAddressModalOpen(false)}
+        painting={painting}
+        whatsappNumber={whatsappNumber}
       />
     </>
   )
