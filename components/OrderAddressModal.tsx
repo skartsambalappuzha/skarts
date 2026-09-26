@@ -5,6 +5,7 @@ import { X, ShoppingBag, MapPin, User, Phone, Home, Building, Globe, Send } from
 import { MuralPainting } from '../lib/sanity/types'
 import { buildWhatsAppUrl } from '../lib/whatsapp'
 import { urlFor } from '../lib/sanity/image'
+import { WhatsAppIcon } from './WhatsAppIcon'
 
 export interface ShippingAddress {
   fullName: string
@@ -340,7 +341,7 @@ Please confirm availability and order payment details. Thank you!`
               type="submit"
               className="w-full bg-[#25D366] hover:bg-[#20bd5a] text-white py-3.5 px-4 rounded-2xl font-bold text-xs sm:text-sm flex items-center justify-center space-x-2 shadow-lg shadow-[#25D366]/20 transition-all active:scale-98 cursor-pointer"
             >
-              <Send className="w-4 h-4" />
+              <WhatsAppIcon className="w-5 h-5 mr-1" />
               <span>Send Order & Address via WhatsApp</span>
             </button>
           </div>

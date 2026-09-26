@@ -9,6 +9,7 @@ import Link from 'next/link'
 import { buildWhatsAppUrl } from '../lib/whatsapp'
 
 import { OrderAddressModal } from './OrderAddressModal'
+import { WhatsAppIcon } from './WhatsAppIcon'
 
 interface ArtworkDetailClientProps {
   painting: MuralPainting
@@ -200,10 +201,10 @@ export function ArtworkDetailClient({ painting, whatsappNumber, relatedPaintings
               <button
                 type="button"
                 onClick={() => setAddressModalOpen(true)}
-                className="w-full bg-[#25D366] hover:bg-[#20bd5a] text-white py-3.5 rounded-full flex items-center justify-center space-x-2.5 text-sm font-bold transition-all shadow-md active:scale-98 cursor-pointer"
+                className="w-full bg-[#25D366] hover:bg-[#20bd5a] text-white py-3 rounded-full flex items-center justify-center space-x-2 text-sm font-bold transition-all shadow-md active:scale-98 cursor-pointer"
               >
-                <ShoppingBag className="w-5 h-5" />
-                <span>Buy Now on WhatsApp</span>
+                <WhatsAppIcon className="w-5 h-5" />
+                <span>Buy Now</span>
               </button>
             </div>
 
@@ -283,10 +284,10 @@ export function ArtworkDetailClient({ painting, whatsappNumber, relatedPaintings
         <button
           type="button"
           onClick={() => setAddressModalOpen(true)}
-          className="bg-[#25D366] hover:bg-[#20bd5a] text-white px-4 py-2.5 rounded-full font-bold text-xs flex items-center space-x-1.5 shadow-lg shadow-[#25D366]/20 transition-all active:scale-95 shrink-0 cursor-pointer"
+          className="bg-[#25D366] hover:bg-[#20bd5a] text-white px-4 py-2 rounded-full font-bold text-xs flex items-center space-x-1.5 shadow-md shadow-[#25D366]/20 transition-all active:scale-95 shrink-0 cursor-pointer"
         >
-          <ShoppingBag className="w-4 h-4" />
-          <span>Buy Now on WhatsApp</span>
+          <WhatsAppIcon className="w-4 h-4" />
+          <span>Buy Now</span>
         </button>
       </div>
 
