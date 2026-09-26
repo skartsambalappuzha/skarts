@@ -270,6 +270,26 @@ export function ArtworkDetailClient({ painting, whatsappNumber, relatedPaintings
         onNext={() => setSelectedImageIndex((prev) => (prev < imageObjects.length - 1 ? prev + 1 : 0))}
       />
 
+      {/* MOBILE STICKY FIXED BOTTOM BUY BAR */}
+      <div className="fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-t border-stone-200/80 px-4 py-3 sm:hidden shadow-2xl flex items-center justify-between gap-3">
+        <div className="flex flex-col min-w-0">
+          <span className="text-[10px] text-stone-500 font-semibold uppercase tracking-wider line-clamp-1">
+            {painting.paintingName}
+          </span>
+          <span className="text-sm font-extrabold text-stone-900">
+            {isPriceOnRequest ? 'Price on Request' : `₹${painting.price?.toLocaleString('en-IN')}`}
+          </span>
+        </div>
+        <button
+          type="button"
+          onClick={() => setAddressModalOpen(true)}
+          className="bg-[#25D366] hover:bg-[#20bd5a] text-white px-4 py-2.5 rounded-full font-bold text-xs flex items-center space-x-1.5 shadow-lg shadow-[#25D366]/20 transition-all active:scale-95 shrink-0 cursor-pointer"
+        >
+          <ShoppingBag className="w-4 h-4" />
+          <span>Buy Now on WhatsApp</span>
+        </button>
+      </div>
+
       {/* SHIPPING ADDRESS MODAL */}
       <OrderAddressModal
         isOpen={addressModalOpen}
