@@ -201,7 +201,7 @@ export function ArtworkDetailClient({ painting, whatsappNumber, relatedPaintings
               <button
                 type="button"
                 onClick={() => setAddressModalOpen(true)}
-                className="w-full bg-[#25D366] hover:bg-[#20bd5a] text-white py-3 rounded-full flex items-center justify-center space-x-2 text-sm font-bold transition-all shadow-md active:scale-98 cursor-pointer"
+                className="w-full bg-[#25D366] hover:bg-[#20bd5a] text-white py-3.5 px-6 rounded-full flex items-center justify-center space-x-2.5 text-base font-extrabold transition-all shadow-lg shadow-[#25D366]/25 hover:shadow-xl active:scale-98 cursor-pointer"
               >
                 <WhatsAppIcon className="w-5 h-5" />
                 <span>Buy Now</span>
@@ -272,21 +272,21 @@ export function ArtworkDetailClient({ painting, whatsappNumber, relatedPaintings
       />
 
       {/* MOBILE STICKY FIXED BOTTOM BUY BAR */}
-      <div className="fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-t border-stone-200/80 px-4 py-3 sm:hidden shadow-2xl flex items-center justify-between gap-3">
+      <div className="fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-t border-stone-200/80 px-4 py-3 sm:hidden shadow-[0_-4px_20px_rgba(0,0,0,0.08)] flex items-center justify-between gap-3">
         <div className="flex flex-col min-w-0">
-          <span className="text-[10px] text-stone-500 font-semibold uppercase tracking-wider line-clamp-1">
+          <span className="text-[10px] text-stone-500 font-bold uppercase tracking-wider line-clamp-1">
             {painting.paintingName}
           </span>
-          <span className="text-sm font-extrabold text-stone-900">
+          <span className="text-base font-extrabold text-stone-900 leading-tight">
             {isPriceOnRequest ? 'Price on Request' : `₹${painting.price?.toLocaleString('en-IN')}`}
           </span>
         </div>
         <button
           type="button"
           onClick={() => setAddressModalOpen(true)}
-          className="bg-[#25D366] hover:bg-[#20bd5a] text-white px-4 py-2 rounded-full font-bold text-xs flex items-center space-x-1.5 shadow-md shadow-[#25D366]/20 transition-all active:scale-95 shrink-0 cursor-pointer"
+          className="bg-[#25D366] hover:bg-[#20bd5a] text-white px-6 py-3 rounded-full font-extrabold text-sm flex items-center space-x-2 shadow-lg shadow-[#25D366]/30 transition-all active:scale-95 shrink-0 cursor-pointer"
         >
-          <WhatsAppIcon className="w-4 h-4" />
+          <WhatsAppIcon className="w-5 h-5" />
           <span>Buy Now</span>
         </button>
       </div>
