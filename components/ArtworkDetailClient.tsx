@@ -195,8 +195,8 @@ export function ArtworkDetailClient({ painting, whatsappNumber, relatedPaintings
               </div>
             </div>
 
-            {/* BUY NOW (LARGE FULL-WIDTH BUTTON) */}
-            <div className="pt-3">
+            {/* BUY NOW (DESKTOP ONLY IN-CARD BUTTON) */}
+            <div className="pt-3 hidden sm:block">
               <button
                 type="button"
                 onClick={() => setAddressModalOpen(true)}
